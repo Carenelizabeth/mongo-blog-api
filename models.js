@@ -9,9 +9,16 @@ const postSchema = mongoose.Schema({
         lastName: String
     },
     content: String,
-    date: {type: Date, default: Date.now}
+    created: {type: Date, default: Date.now}
 })
 
-const blogPost = mongoose.model('blogPost', postSchema);
+postSchema.methods.serialize = function(){
+    return {
+        id: this.id,
+        title: this.title
+    }
+}
+
+const blogPost = mongoose.model('posts', postSchema);
 
 module.exports = {blogPost};

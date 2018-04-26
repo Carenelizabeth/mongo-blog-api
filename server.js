@@ -17,9 +17,9 @@ app.use(bodyParser.json());
 app.get('/blogpost', (req, res) =>{
     blogPost
         .find()
-        .then(posts =>{
-            res.json({message: "just testing"});
-        })
+        .then(blogpost => res.json({
+            blogpost: blogpost
+        }))
         .catch(
             err =>{
                 console.error(err);
