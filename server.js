@@ -18,7 +18,8 @@ app.get('/blogpost', (req, res) =>{
     blogPost
         .find()
         .then(blogpost => res.json({
-            blogpost: blogpost
+            blogpost: blogpost.map(
+                (bpost) => bpost.serialize())
         }))
         .catch(
             err =>{

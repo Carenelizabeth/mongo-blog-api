@@ -14,8 +14,9 @@ const postSchema = mongoose.Schema({
 
 postSchema.methods.serialize = function(){
     return {
-        id: this.id,
-        title: this.title
+        title: this.title,
+        content: this.content,
+        created: this.created
     }
 }
 
