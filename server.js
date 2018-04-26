@@ -28,6 +28,16 @@ app.get('/blogpost', (req, res) =>{
     });
 });
 
+app.get('/blogpost/:id', (req, res) =>{
+    blogPost
+        .findById(req.params.id)
+        .then(blogpost =>res.json(blogpost.serialize()))
+        .catch(err =>{
+            console.error(err);
+            res.status(500).json({message: 'Internal server error'});
+    });
+});
+
 function runServer(databaseUrl, port=PORT){
     return new Promise((resolve, reject) =>{
         mongoose.connect(databaseUrl, err =>{

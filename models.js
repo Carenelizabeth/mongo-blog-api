@@ -21,7 +21,8 @@ postSchema.methods.serialize = function(){
         title: this.title,
         content: this.content,
         author: this.fullName,
-        created: this.created
+        created: this.created,
+        id: this._id
     }
 }
 
