@@ -12,10 +12,15 @@ const postSchema = mongoose.Schema({
     created: {type: Date, default: Date.now}
 })
 
+postSchema.virtual('fullName').get(function(){
+    return this.author.firstName + ' ' + this.author.lastName;
+});
+
 postSchema.methods.serialize = function(){
     return {
         title: this.title,
         content: this.content,
+        author: this.fullName,
         created: this.created
     }
 }
