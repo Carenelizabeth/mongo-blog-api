@@ -12,8 +12,11 @@ const postSchema = mongoose.Schema({
     created: {type: Date, default: Date.now}
 })
 
-postSchema.virtual('fullName').get(function(){
-    return this.author.firstName + ' ' + this.author.lastName;
+postSchema.virtual('fullName')
+    .get(function() {return this.author.firstName + ' ' + this.author.lastName;})
+    .set(function(v){
+        this.author.firstName = v.substr(0, v.indexOf(' '));
+        this.author.lastName = v.substr(v.indexOf(' ') + 1);
 });
 
 postSchema.methods.serialize = function(){
