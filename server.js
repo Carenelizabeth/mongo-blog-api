@@ -83,6 +83,13 @@ app.put('/blogpost/:id', (req,res) =>{
         .catch(err => res.status(500).json({message: 'Internal server error'}));
 });
 
+app.delete('/blogpost/:id', (req, res) => {
+    blogPost
+        .findByIdAndRemove(req.params.id)
+        .then(() => res.status(204).end())
+        .catch(err => res.status(500).json({message: 'internal server error'}));
+});
+
 function runServer(databaseUrl, port=PORT){
     return new Promise((resolve, reject) =>{
         mongoose.connect(databaseUrl, err =>{
